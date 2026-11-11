@@ -3,63 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Testes dos apps — Eu Quero Whats</title>
-<meta name="description" content="Como virar testador dos apps Android do Eu Quero Whats: grupo de testes, link de convite de cada app e link da Google Play.">
-<link rel="stylesheet" href="../estilo.css">
+<title>Seja testador — Eu Quero Whats</title>
+<meta name="description" content="Teste de graça os apps Android do Eu Quero Whats: entre no grupo de testes, abra o convite do app e instale pela Google Play.">
+<meta name="color-scheme" content="light dark">
 <style>
-.app{border:1px solid #e0ebe5;border-radius:14px;padding:16px 18px;margin:14px 0}
-.app h3{margin:0 0 6px;font-size:1.08rem;color:#1d6b58}
-.app p{margin:4px 0}
-.nota{color:#5d6f68;font-size:.92rem}
-.passo li{margin:6px 0}
+:root{
+  --bg:#f3f7f5; --card:#ffffff; --ink:#18231f; --muted:#5b6b64; --line:#dfe9e4;
+  --brand:#14957a; --brand-d:#0f6f5b; --brand-soft:#e3f4ee; --on-brand:#ffffff;
+  --warn-bg:#fff6e0; --warn-ink:#6b4e00; --shadow:0 1px 2px rgba(20,40,32,.06),0 8px 24px rgba(20,40,32,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1714; --card:#17221e; --ink:#e8f1ed; --muted:#9db1a8; --line:#25352f;
+    --brand:#2bc3a1; --brand-d:#5fe0c3; --brand-soft:#17332b; --on-brand:#08231c;
+    --warn-bg:#2d2610; --warn-ink:#f0d98a; --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brand-d)}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-weight:700}
+.top a{text-decoration:none;color:var(--muted);font-weight:600;font-size:.95rem}
+.top a:hover{color:var(--brand-d)}
+
+.hero{background:linear-gradient(135deg,#0f6f5b 0%,#14957a 55%,#2bc3a1 100%);color:#fff;border-radius:24px;padding:44px 28px 40px;box-shadow:var(--shadow)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:600;margin-bottom:14px}
+.hero h1{font-size:clamp(1.9rem,5.5vw,2.8rem);line-height:1.12;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{margin:0 0 24px;max-width:56ch;font-size:1.06rem;opacity:.95}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:12px;font-weight:700;font-size:1rem;text-decoration:none;border:2px solid transparent;transition:transform .08s,background .15s}
+.btn:active{transform:scale(.98)}
+.btn-light{background:#fff;color:#0f6f5b}
+.btn-light:hover{background:#eafaf5}
+.btn-main{background:var(--brand);color:var(--on-brand)}
+.btn-main:hover{filter:brightness(1.06)}
+.btn-line{background:transparent;color:var(--brand-d);border-color:var(--line)}
+.btn-line:hover{border-color:var(--brand);background:var(--brand-soft)}
+.btn:focus-visible,a:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+
+h2{font-size:1.45rem;margin:44px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 18px}
+
+.steps{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);counter-reset:s;padding:0;list-style:none;margin:0}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 20px;box-shadow:var(--shadow)}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--brand);color:var(--on-brand);font-weight:800;margin-bottom:10px}
+.step h3{margin:0 0 4px;font-size:1.05rem}
+.step p{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+
+.apps{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
+.app{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.app-head{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.app-head img{width:64px;height:64px;border-radius:15px;flex:none;background:var(--brand-soft);border:1px solid var(--line)}
+.app h3{margin:0;font-size:1.12rem;line-height:1.25}
+.badge{display:inline-block;margin-top:4px;background:var(--brand-soft);color:var(--brand-d);font-size:.74rem;font-weight:700;border-radius:999px;padding:2px 9px}
+.app p{margin:0 0 16px;color:var(--muted);flex:1}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.actions .btn{flex:1 1 150px}
+
+.aviso{background:var(--warn-bg);color:var(--warn-ink);border-radius:14px;padding:14px 16px;margin-top:22px;font-size:.95rem}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{margin:10px 0 2px;color:var(--muted)}
+footer{color:var(--muted);text-align:center;font-size:.9rem;padding:40px 0 36px}
+
+@media (max-width:780px){
+  .steps{grid-template-columns:1fr}
+  .apps{grid-template-columns:1fr}
+  .hero{padding:32px 20px 30px;border-radius:20px}
+}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a href="../" style="text-decoration:none">Apps</a></div></header>
-<main class="wrap">
-  <h1>Seja testador dos nossos apps</h1>
-  <p class="updated">Última atualização: 11 de novembro de 2026</p>
+<div class="wrap">
+  <div class="top"><span>Eu Quero Whats</span><a href="../">Políticas de privacidade →</a></div>
 
-  <p>Os apps abaixo estão em <b>teste fechado</b> na Google Play. Quem participa do grupo de testes instala a versão de testes, ajuda a achar problemas e dá sugestões. É grátis.</p>
+  <section class="hero">
+    <span class="tag">Teste fechado · grátis</span>
+    <h1>Teste nossos apps antes de todo mundo</h1>
+    <p>Entre no grupo de testes, escolha um app e instale a versão de testes pela Google Play. Seu uso e suas sugestões ajudam a deixar cada app melhor.</p>
+    <a class="btn btn-light" href="https://groups.google.com/g/euquerowhats-testadores">Entrar no grupo de testes</a>
+  </section>
 
   <h2>Como participar</h2>
-  <ol class="passo">
-    <li>Entre no <a href="https://groups.google.com/g/euquerowhats-testadores">grupo de testes Eu Quero Whats</a> usando a conta Google que você usa no celular, e toque em <b>Participar do grupo</b>.</li>
-    <li>Abra o <b>link de convite</b> do app que você quer testar (abaixo) com a mesma conta e toque em <b>Tornar-se testador</b>.</li>
-    <li>Depois toque no link para baixar o app na Google Play. Pode levar alguns minutos para o acesso ser liberado.</li>
+  <p class="sub">São 3 passos. Use sempre a mesma conta Google do seu celular.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Entre no grupo</h3>
+      <p>Abra o grupo e toque em <b>Participar do grupo</b>. Um só grupo vale para todos os apps.</p>
+      <a class="btn btn-main" href="https://groups.google.com/g/euquerowhats-testadores">Abrir o grupo</a>
+    </li>
+    <li class="step">
+      <h3>Aceite o convite</h3>
+      <p>Escolha o app abaixo, abra o convite e toque em <b>Tornar-se testador</b>.</p>
+      <a class="btn btn-line" href="#apps">Ver os apps</a>
+    </li>
+    <li class="step">
+      <h3>Instale na Play Store</h3>
+      <p>Depois de aceitar, baixe o app pela Google Play. O acesso pode levar alguns minutos.</p>
+    </li>
   </ol>
-  <p class="nota">O mesmo grupo vale para todos os apps. Use sempre a mesma conta Google no grupo, no convite e na Play Store do celular.</p>
 
-  <h2>Apps</h2>
+  <h2 id="apps">Apps para testar</h2>
+  <p class="sub">Cada app tem o seu convite e o link da Google Play.</p>
+  <div class="apps">
 
-  <div class="app">
-    <h3>poupar! Preços de Mercado</h3>
-    <p>Consulte e compartilhe preços de supermercado para economizar nas compras.</p>
-    <p><a href="https://play.google.com/apps/testing/br.com.euquerowhats.poupar">Tornar-se testador</a> · <a href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.poupar">Ver na Google Play</a></p>
+    <article class="app">
+      <div class="app-head">
+        <img src="../poupar/loja/icone-512.png" alt="" width="64" height="64" loading="lazy">
+        <div><h3>poupar! Preços de Mercado</h3><span class="badge">Teste fechado</span></div>
+      </div>
+      <p>Consulte e compartilhe preços de supermercado para economizar nas compras.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://play.google.com/apps/testing/br.com.euquerowhats.poupar">Tornar-se testador</a>
+        <a class="btn btn-line" href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.poupar">Google Play</a>
+      </div>
+    </article>
+
+    <article class="app">
+      <div class="app-head">
+        <img src="../conta-comigo/loja/icone-512.png" alt="" width="64" height="64" loading="lazy">
+        <div><h3>Contas da CaLu: Matemática</h3><span class="badge">Teste fechado</span></div>
+      </div>
+      <p>App de matemática para crianças.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://play.google.com/apps/testing/br.com.euquerowhats.contacomigo">Tornar-se testador</a>
+        <a class="btn btn-line" href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.contacomigo">Google Play</a>
+      </div>
+    </article>
+
+    <article class="app">
+      <div class="app-head">
+        <img src="../palavras-da-calu/loja/icone-512.png" alt="" width="64" height="64" loading="lazy">
+        <div><h3>Palavras da CaLu: Português</h3><span class="badge">Teste fechado</span></div>
+      </div>
+      <p>Português para crianças.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://play.google.com/apps/testing/br.com.euquerowhats.palavrasdacalu">Tornar-se testador</a>
+        <a class="btn btn-line" href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.palavrasdacalu">Google Play</a>
+      </div>
+    </article>
+
+    <article class="app">
+      <div class="app-head">
+        <img src="../fe-diaria-catolica/loja/icone-512.png" alt="" width="64" height="64" loading="lazy">
+        <div><h3>Fé Diária Católica</h3><span class="badge">Teste fechado</span></div>
+      </div>
+      <p>A Palavra de Deus e uma mensagem de esperança todo dia.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://play.google.com/apps/testing/br.com.euquerowhats.fediariacatolica">Tornar-se testador</a>
+        <a class="btn btn-line" href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.fediariacatolica">Google Play</a>
+      </div>
+    </article>
+
   </div>
 
-  <div class="app">
-    <h3>Contas da CaLu: Matemática</h3>
-    <p>App de matemática para crianças.</p>
-    <p><a href="https://play.google.com/apps/testing/br.com.euquerowhats.contacomigo">Tornar-se testador</a> · <a href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.contacomigo">Ver na Google Play</a></p>
+  <p class="aviso"><b>Sobre o botão "Google Play":</b> enquanto um app estiver só em teste fechado, quem ainda não é testador vê "app não encontrado". O link passa a funcionar para todos quando o app for publicado.</p>
+
+  <h2>Dúvidas</h2>
+  <div class="faq">
+    <details>
+      <summary>Vejo "app não disponível" ao abrir o convite</summary>
+      <p>Confira se você entrou no grupo de testes e se está usando a mesma conta Google no grupo, no convite e na Play Store do celular. Depois de aceitar, o acesso pode levar alguns minutos.</p>
+    </details>
+    <details>
+      <summary>Preciso pagar alguma coisa?</summary>
+      <p>Não. Participar do teste é grátis e você pode sair do grupo quando quiser.</p>
+    </details>
+    <details>
+      <summary>Posso testar mais de um app?</summary>
+      <p>Pode. O grupo é o mesmo para todos. Basta aceitar o convite de cada app.</p>
+    </details>
   </div>
 
-  <div class="app">
-    <h3>Palavras da CaLu: Português</h3>
-    <p>Português para crianças.</p>
-    <p><a href="https://play.google.com/apps/testing/br.com.euquerowhats.palavrasdacalu">Tornar-se testador</a> · <a href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.palavrasdacalu">Ver na Google Play</a></p>
-  </div>
-
-  <div class="app">
-    <h3>Fé Diária Católica</h3>
-    <p>A Palavra de Deus e uma mensagem de esperança todo dia.</p>
-    <p><a href="https://play.google.com/apps/testing/br.com.euquerowhats.fediariacatolica">Tornar-se testador</a> · <a href="https://play.google.com/store/apps/details?id=br.com.euquerowhats.fediariacatolica">Ver na Google Play</a></p>
-  </div>
-
-  <p class="nota">Enquanto um app estiver só em teste fechado, o link "Ver na Google Play" pode mostrar "app não encontrado" para quem ainda não é testador. Ele passa a funcionar para todos quando o app for publicado.</p>
-
-  <p><a href="../">Políticas de privacidade dos apps</a></p>
-</main>
-<footer class="wrap">Eu Quero Whats</footer>
+  <footer>Eu Quero Whats · <a href="../">Políticas de privacidade</a></footer>
+</div>
 </body>
 </html>
