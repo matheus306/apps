@@ -1,0 +1,14 @@
+{
+  "convite": {
+    "texto": "Achadinhos do dia: ofertas selecionadas no Eu Quero Whats",
+    "botao": "Ver ofertas",
+    "url": "https://euquerowhats.com.br/links?utm_source=poupar"
+  },
+  "cartoes": [
+    {
+      "texto": "Achadinhos do dia no Eu Quero Whats",
+      "botao": "Ver ofertas",
+      "url": "https://euquerowhats.com.br/links?utm_source=poupar-rodape"
+    }
+  ]
+}
